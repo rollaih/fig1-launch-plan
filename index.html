@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fig1.ai — Link in Bio Launch Plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-dark: #0f0735;
+    --bg-darker: #0a012a;
+    --accent: #00d4ff;
+    --accent-secondary: #e04cff;
+    --gradient: linear-gradient(135deg, #00d4ff, #a855f7, #e04cff);
+    --gradient-subtle: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(224,76,255,0.15));
+    --accent-dim: #7c3aed;
+    --text: hsl(210, 40%, 98%);
+    --text-dim: #8b8fad;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-darker);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,1,42,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--card-border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 60px;
+  }
+  nav .logo-img { height: 28px; width: auto; mix-blend-mode: screen; }
+  nav .nav-links { display: flex; gap: 8px; }
+  nav .nav-links a {
+    color: var(--text-dim); text-decoration: none; font-size: 0.8rem;
+    padding: 6px 14px; border-radius: 6px; transition: all 0.2s;
+    font-weight: 500;
+  }
+  nav .nav-links a:hover, nav .nav-links a.active {
+    color: var(--accent); background: rgba(0,212,255,0.1);
+  }
+  .draft-badge {
+    font-size: 0.65rem;
+    background: var(--gradient-subtle);
+    border: 1px solid rgba(0,212,255,0.2);
+    color: var(--accent); padding: 4px 10px; border-radius: 20px;
+    font-weight: 600; letter-spacing: 0.5px;
+  }
+
+  /* ── SLIDES ── */
+  .slide {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 100px 60px 60px;
+    position: relative;
+  }
+  .slide-inner { max-width: 1100px; width: 100%; }
+
+  /* ── TITLE SLIDE ── */
+  .slide-title {
+    background:
+      radial-gradient(ellipse at 75% 20%, rgba(0,212,255,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 25% 80%, rgba(224,76,255,0.06) 0%, transparent 50%),
+      var(--bg-darker);
+  }
+  .slide-title .slide-inner { text-align: center; }
+  .slide-title .hero-logo {
+    height: 80px; width: auto; margin-bottom: 20px;
+    mix-blend-mode: screen;
+  }
+  .slide-title h2 {
+    font-size: 1.8rem; font-weight: 300; color: var(--text-dim);
+    margin-bottom: 30px;
+  }
+  .slide-title .divider {
+    width: 120px; height: 2px;
+    background: var(--gradient);
+    margin: 0 auto 30px; opacity: 0.7;
+  }
+  .slide-title p {
+    font-size: 1.1rem;
+    background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; font-style: italic;
+  }
+  .circle-deco {
+    position: absolute; border-radius: 50%;
+    pointer-events: none;
+  }
+  .circle-deco.c1 {
+    width: 500px; height: 500px; top: -100px; right: -100px;
+    background: radial-gradient(circle, rgba(0,212,255,0.06), transparent 70%);
+  }
+  .circle-deco.c2 {
+    width: 300px; height: 300px; bottom: -50px; left: -80px;
+    background: radial-gradient(circle, rgba(224,76,255,0.05), transparent 70%);
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 12px;
+    background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .section-title {
+    font-size: 2.8rem; font-weight: 800; letter-spacing: -1px;
+    margin-bottom: 16px; line-height: 1.15;
+  }
+  .section-subtitle {
+    font-size: 1.05rem; color: var(--text-dim); line-height: 1.7;
+    max-width: 750px; margin-bottom: 48px;
+  }
+
+  /* ── CARDS ── */
+  .card-grid { display: grid; gap: 20px; }
+  .card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 14px; padding: 30px; transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .card:hover {
+    border-color: rgba(0,212,255,0.25);
+    background: rgba(0,212,255,0.03);
+    transform: translateY(-2px);
+  }
+  .card h3 {
+    font-size: 1.05rem; font-weight: 700; margin-bottom: 10px;
+    background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .card p, .card li {
+    font-size: 0.88rem; color: var(--text-dim); line-height: 1.65;
+  }
+  .card ul { list-style: none; padding: 0; }
+  .card ul li { padding: 4px 0; }
+  .card ul li::before {
+    content: ""; display: inline-block;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent); margin-right: 10px;
+    vertical-align: middle;
+  }
+  .card .card-number {
+    position: absolute; top: 16px; right: 20px;
+    font-size: 2.5rem; font-weight: 900; color: rgba(0,212,255,0.07);
+    line-height: 1;
+  }
+
+  /* ── TABLE ── */
+  .table-wrap {
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--card-border); margin-top: 40px;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead { background: var(--bg-dark); }
+  th {
+    text-align: left; padding: 14px 20px; font-size: 0.82rem;
+    font-weight: 700; color: var(--accent); letter-spacing: 0.3px;
+    border-bottom: 1px solid rgba(0,212,255,0.15);
+  }
+  td {
+    padding: 13px 20px; font-size: 0.85rem; color: var(--text-dim);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(0,212,255,0.03); }
+  .check { color: var(--accent); font-weight: 600; }
+  .no { color: #666; }
+
+  /* ── TIMELINE ── */
+  .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+  .timeline::before {
+    content: ""; position: absolute; top: 38px; left: 5%; right: 5%;
+    height: 2px; background: var(--gradient);
+    opacity: 0.3;
+  }
+  .phase {
+    text-align: center; padding: 0 16px; position: relative;
+  }
+  .phase-dot {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--gradient); margin: 30px auto 24px;
+    box-shadow: 0 0 20px rgba(0,212,255,0.25);
+    position: relative; z-index: 2;
+  }
+  .phase-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 4px;
+    background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .phase-time {
+    font-size: 0.75rem; color: var(--text-dim); margin-bottom: 20px;
+    font-style: italic;
+  }
+  .phase ul {
+    text-align: left; list-style: none; padding: 0;
+    background: var(--card-bg); border-radius: 12px;
+    padding: 20px; border: 1px solid var(--card-border);
+  }
+  .phase ul li {
+    font-size: 0.8rem; color: var(--text-dim); padding: 5px 0;
+    line-height: 1.5;
+  }
+  .phase ul li::before {
+    content: ""; display: inline-block;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--accent); margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* ── METRICS ── */
+  .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .metric-card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 14px; padding: 28px; text-align: center;
+    transition: all 0.3s;
+  }
+  .metric-card:hover {
+    border-color: rgba(0,212,255,0.25);
+    transform: translateY(-2px);
+  }
+  .metric-icon { font-size: 1.8rem; margin-bottom: 12px; }
+  .metric-card h4 {
+    font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;
+  }
+  .metric-card .targets {
+    display: flex; gap: 12px; justify-content: center; margin-top: 12px;
+  }
+  .metric-card .target-box {
+    background: var(--gradient-subtle); border-radius: 8px;
+    padding: 8px 14px; font-size: 0.72rem;
+  }
+  .metric-card .target-box .label {
+    color: var(--text-dim); font-weight: 500;
+  }
+  .metric-card .target-box .val {
+    color: var(--accent); font-weight: 700; font-size: 0.85rem;
+  }
+
+  /* ── FOOTER ── */
+  .slide-footer {
+    text-align: center; color: var(--text-dim); font-size: 0.8rem;
+    padding-bottom: 30px; font-style: italic;
+  }
+  .slide-footer .accent {
+    font-style: normal; font-weight: 600;
+    background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute; bottom: 30px; left: 50%;
+    transform: translateX(-50%); text-align: center;
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint span {
+    display: block; font-size: 0.7rem; color: var(--text-dim);
+    margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .scroll-arrow {
+    width: 24px; height: 24px; border-right: 2px solid var(--accent-secondary);
+    border-bottom: 2px solid var(--accent); transform: rotate(45deg);
+    margin: 0 auto; opacity: 0.5;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ── SLIDE NUMBER ── */
+  .slide-num {
+    position: absolute; bottom: 30px; right: 40px;
+    font-size: 0.7rem; color: var(--text-dim); opacity: 0.4;
+    font-weight: 600;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .slide { padding: 100px 24px 50px; }
+    .slide-title h1 { font-size: 2.8rem; }
+    .section-title { font-size: 2rem; }
+    .card-grid.cols-4, .card-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+    .card-grid.cols-2 { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .timeline::before { display: none; }
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+    nav .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .card-grid.cols-4, .card-grid.cols-3, .card-grid.cols-2 { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr; }
+    .metric-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <img src="logo.jpg" alt="Fig1.ai" class="logo-img">
+  <div class="nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#positioning">Positioning</a>
+    <a href="#strategy">Strategy</a>
+    <a href="#timeline">Timeline</a>
+  </div>
+  <div class="draft-badge">DRAFT &mdash; INTERNAL</div>
+</nav>
+
+<!-- SLIDE 1 — TITLE -->
+<section class="slide slide-title" id="title">
+  <div class="circle-deco c1"></div>
+  <div class="circle-deco c2"></div>
+  <div class="slide-inner fade-in">
+    <img src="logo.jpg" alt="Fig1.ai" class="hero-logo">
+    <h2>Link in Bio</h2>
+    <div class="divider"></div>
+    <p>Product Launch Plan</p>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+  <div class="slide-num">01 / 04</div>
+</section>
+
+<!-- SLIDE 2 — OVERVIEW -->
+<section class="slide" id="overview" style="background: radial-gradient(ellipse at 20% 80%, rgba(0,212,255,0.05) 0%, var(--bg-darker) 60%), radial-gradient(ellipse at 80% 20%, rgba(224,76,255,0.03) 0%, transparent 50%), var(--bg-darker);">
+  <div class="slide-inner">
+    <div class="fade-in">
+      <div class="section-label">Product Overview</div>
+      <div class="section-title">An AI-powered alternative to<br>Linktree &amp; Stan Store</div>
+      <div class="section-subtitle">
+        Built for creators and influencers. Each page features an AI-powered chat where the creator's AI persona interacts with visitors, a sponsorship showcase to highlight brand partnerships, and all the standard link hosting creators need.
+      </div>
+    </div>
+    <div class="card-grid cols-4 fade-in">
+      <div class="card">
+        <h3>Link Hosting</h3>
+        <p>All standard links &mdash; social profiles, merch, content, booking, and more.</p>
+      </div>
+      <div class="card">
+        <h3>AI Chat</h3>
+        <p>Visitors chat with the creator's AI persona. Creator chooses video or text-only mode.</p>
+      </div>
+      <div class="card">
+        <h3>Sponsorship Showcase</h3>
+        <p>Dedicated section to highlight brand partnerships, sponsored products, and affiliate links.</p>
+      </div>
+      <div class="card">
+        <h3>Customizable Design</h3>
+        <p>Branded look and feel matching the creator's aesthetic.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">02 / 04</div>
+</section>
+
+<!-- SLIDE 3 — COMPETITIVE POSITIONING -->
+<section class="slide" id="positioning" style="background: radial-gradient(ellipse at 80% 30%, rgba(168,85,247,0.06) 0%, var(--bg-darker) 60%), radial-gradient(ellipse at 10% 70%, rgba(0,212,255,0.04) 0%, transparent 50%), var(--bg-darker);">
+  <div class="slide-inner">
+    <div class="fade-in">
+      <div class="section-label">Market Landscape</div>
+      <div class="section-title">Competitive Positioning</div>
+      <div class="section-subtitle">Fig1.ai delivers everything Linktree and Stan Store offer, plus AI-powered creator interaction and dedicated sponsorship tools that no competitor has.</div>
+    </div>
+    <div class="table-wrap fade-in">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Linktree</th>
+            <th>Stan Store</th>
+            <th>Fig1.ai Link in Bio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Link Hosting</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>AI Chat (Video / Text)</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="check">&#10003; Creator's AI persona interacts with visitors</td>
+          </tr>
+          <tr>
+            <td>Sponsorship Showcase</td>
+            <td class="no">No</td>
+            <td class="no">Limited</td>
+            <td class="check">&#10003; Dedicated branded section</td>
+          </tr>
+          <tr>
+            <td>E-Commerce</td>
+            <td class="no">Limited</td>
+            <td>Yes</td>
+            <td>Roadmap</td>
+          </tr>
+          <tr>
+            <td>Creator AI Identity</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="check">&#10003; Creator controls voice, personality, responses</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="slide-num">03 / 04</div>
+</section>
+
+<!-- SLIDE 4 — LAUNCH STRATEGY -->
+<section class="slide" id="strategy" style="background: radial-gradient(ellipse at 50% 20%, rgba(0,212,255,0.04) 0%, var(--bg-darker) 60%), radial-gradient(ellipse at 80% 80%, rgba(224,76,255,0.04) 0%, transparent 50%), var(--bg-darker); min-height: auto; padding-top: 100px; padding-bottom: 80px;">
+  <div class="slide-inner">
+    <div class="fade-in">
+      <div class="section-label">Go-To-Market</div>
+      <div class="section-title">Launch Strategy</div>
+      <div class="section-subtitle">A 5-part strategy combining video content, influencer seeding, organic distribution, and paid amplification.</div>
+    </div>
+
+    <div class="card-grid cols-2 fade-in" style="margin-bottom: 20px;">
+      <div class="card">
+        <div class="card-number">01</div>
+        <h3>Commercial-Style Video</h3>
+        <p>Polished commercial showing AI chat responding to a fan, sponsorship section, seamless link experience.</p>
+        <ul style="margin-top: 14px;">
+          <li><strong>Hero Video (60s)</strong> &mdash; Website, PR, influencer outreach</li>
+          <li><strong>Social Cut (15&ndash;30s)</strong> &mdash; Shareable, vertical, fast hook</li>
+          <li><strong>Demo Walkthrough (90&ndash;120s)</strong> &mdash; Detailed product tour for warm leads</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-number">02</div>
+        <h3>Influencer Seeding</h3>
+        <p>The most important lever. <strong style="color:#00d4ff;">Build their pages before outreach</strong> &mdash; show up with "here's yours, it's live."</p>
+        <ul style="margin-top: 14px;">
+          <li>Hand-pick 5&ndash;10 creators across niches</li>
+          <li>Build their pages before outreach</li>
+          <li>Offer first 3&ndash;6 months free</li>
+          <li>Send commercial video + live page as the pitch</li>
+          <li>Ask them to post once onboarded</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-grid cols-3 fade-in" style="margin-bottom: 20px;">
+      <div class="card">
+        <div class="card-number">03</div>
+        <h3>Website Product Page</h3>
+        <ul>
+          <li>Hero section with commercial video</li>
+          <li>Feature breakdown</li>
+          <li>Live interactive demo</li>
+          <li>Social proof &amp; testimonials</li>
+          <li>Comparison vs. competitors</li>
+          <li>Pricing / free trial CTA</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-number">04</div>
+        <h3>Fig1.ai Social + PR</h3>
+        <ul>
+          <li>Launch announcement with video</li>
+          <li>Product deep dive &mdash; how AI chat works</li>
+          <li>Creator spotlight series (ongoing)</li>
+          <li>Blog / press release for distribution</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-number">05</div>
+        <h3>Paid Promotion (Phase 2)</h3>
+        <p>Activate after organic wave generates social proof.</p>
+        <ul style="margin-top: 14px;">
+          <li><strong>Meta Ads</strong> &mdash; retargeting + lookalikes from sign-ups</li>
+          <li><strong>Google Ads</strong> &mdash; "link in bio tool", "linktree alternative"</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SLIDE 5 — TIMELINE -->
+<section class="slide" id="timeline" style="background: radial-gradient(ellipse at 30% 70%, rgba(224,76,255,0.05) 0%, var(--bg-darker) 60%), radial-gradient(ellipse at 70% 20%, rgba(0,212,255,0.04) 0%, transparent 50%), var(--bg-darker);">
+  <div class="slide-inner">
+    <div class="fade-in">
+      <div class="section-label">Execution</div>
+      <div class="section-title">Launch Sequence</div>
+      <div class="section-subtitle">Phased approach to coordinate all pieces. Adjust timing based on commercial video and creator page readiness.</div>
+    </div>
+    <div class="timeline fade-in">
+      <div class="phase">
+        <div class="phase-dot"></div>
+        <div class="phase-label">Pre-Launch</div>
+        <div class="phase-time">Weeks 1&ndash;3</div>
+        <ul>
+          <li>Produce commercial video (hero + social cuts)</li>
+          <li>Build pages for 5&ndash;10 seeded creators</li>
+          <li>Build website product page with live demo</li>
+          <li>Draft blog / press release</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-dot"></div>
+        <div class="phase-label">Soft Launch</div>
+        <div class="phase-time">Week 4</div>
+        <ul>
+          <li>Send seeded creators their live pages + video</li>
+          <li>Onboard creators, collect feedback</li>
+          <li>Fig1.ai launch announcement post</li>
+          <li>Publish blog / press release</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-dot"></div>
+        <div class="phase-label">Public Launch</div>
+        <div class="phase-time">Weeks 5&ndash;6</div>
+        <ul>
+          <li>Seeded creators post about their pages</li>
+          <li>Creator spotlight posts (ongoing)</li>
+          <li>Open sign-ups publicly</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-dot"></div>
+        <div class="phase-label">Growth</div>
+        <div class="phase-time">Week 7+</div>
+        <ul>
+          <li>Activate paid promotion</li>
+          <li>Continue creator outreach</li>
+          <li>Iterate based on early feedback</li>
+          <li>Track "Powered by Fig1.ai" referrals</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">04 / 04</div>
+</section>
+
+
+<script>
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('.slide[id]');
+  const navLinks = document.querySelectorAll('nav .nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 100;
+      if (window.scrollY >= top) current = section.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
